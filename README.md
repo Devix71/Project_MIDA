@@ -1,3 +1,3 @@
 # Project_MIDA
 
-Project MIDA is a master's project for the Artificial Intelligence Cognitive Science course at the University of Gothenburg.
+Project MIDA is a project for the Artificial Intelligence Cognitive Systems course at the University of Gothenburg.
