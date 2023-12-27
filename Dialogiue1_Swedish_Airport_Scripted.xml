@@ -1,0 +1,439 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables>
+    <variable type="IntentCandidate" id="FL,}WJ]wgM|!c~+N{LDF">swedish</variable>
+    <variable type="IntentCandidate" id="Jj/s-9fm.H43$;=CU9?d">needHelp</variable>
+    <variable type="IntentCandidate" id="`f^$~Su~%9hPf{WPIcGk">needTaxi</variable>
+    <variable type="IntentCandidate" id="e4HaIEiBcrG7EIJ/^@M%">thanks</variable>
+  </variables>
+  <block type="state" id="hJ{|`x;UYbOILHQoryH0" deletable="false" editable="false" x="-536" y="11">
+    <field name="stateName">start</field>
+    <statement name="actions">
+      <block type="action_texture_dropdown" id="2J(WNB}LuR,c4nhC_WIO">
+        <field name="texture">Isabel</field>
+        <next>
+          <block type="attend_user" id="x%{eqsoeaP$af;ZP#)(V">
+            <field name="user">nobody</field>
+            <next>
+              <block type="if_then_else" id="_Ahp:,!`}%Fyw8qxQuC{">
+                <value name="cond">
+                  <block type="cond_has_users" id="zz$dru[`s:/V.kX]xsR("></block>
+                </value>
+                <statement name="actions">
+                  <block type="attend_user" id="x]E]I-QiUrY$m,:L.A4k">
+                    <field name="user">that user</field>
+                    <next>
+                      <block type="goto" id="5)ont/%~^J7rWIfHEl,S">
+                        <field name="stateName">greeting</field>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="onuserenter" id="e9YzJyUvB;iK~U|/uBF@">
+        <statement name="actions">
+          <block type="attend_user" id="t-93i.D-BcXpGg|zX(/i">
+            <field name="user">that user</field>
+            <next>
+              <block type="goto" id="v5HPcId~?m2K.p?]tTm]">
+                <field name="stateName">greeting</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+  <block type="state" id="b3}):Pcx5:`2~b~Q@bl1" x="-293" y="17">
+    <field name="stateName">greeting</field>
+    <statement name="actions">
+      <block type="action_voice" id="PAxsk_z%Y~~Nfq_g=%Xt">
+        <field name="voice">Ruth-Neural (en-US) - Amazon Polly</field>
+        <next>
+          <block type="say_utterance" id="/dee?/^{*Iaap-K~7BS?">
+            <statement name="utterance">
+              <block type="utt_text" id="wP_,~)NVK=zx:0TWU4fA">
+                <field name="text">Hello, I am MIDA. How can I help you?</field>
+              </block>
+            </statement>
+            <next>
+              <block type="action_gesture_param" id="Ftii~=n*sdo-ZTlO;ul,">
+                <field name="gesture">BigSmile</field>
+                <value name="strength">
+                  <shadow type="text" id="{`.,uZaJ$MnGRV?-hqOB">
+                    <field name="value">1.5</field>
+                  </shadow>
+                </value>
+                <value name="duration">
+                  <shadow type="text" id="y`LdblpP~eVMWbj@#G7.">
+                    <field name="value">2.0</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="listen" id="MvHmI{+@fLB|Gx,0Vm)s"></block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="onreentry" id="/81`]8w)d7RMf*vwgZpm">
+        <statement name="actions">
+          <block type="listen" id="wV*M*uYxU_j5vNnFOz:n"></block>
+        </statement>
+        <next>
+          <block type="onresponse_intent" id="8ao-2]yJr/u).aIHWB7n">
+            <value name="intent">
+              <block type="intent_variable" id="yWC7/Qfg,KQtyu1]wk=C">
+                <field name="varname" id="FL,}WJ]wgM|!c~+N{LDF" variabletype="IntentCandidate">swedish</field>
+              </block>
+            </value>
+            <statement name="actions">
+              <block type="goto" id="}UW)^GE;OCJ,LI0tixpJ">
+                <field name="stateName">speakSwedish</field>
+              </block>
+            </statement>
+            <next>
+              <block type="onresponse_nothing" id=";Fj{:c!gVJ?l.$#ChD6X">
+                <statement name="actions">
+                  <block type="reentry" id="1?`fud`XNv(g+py2r:b["></block>
+                </statement>
+                <next>
+                  <block type="onuserleave" id="G}npo;cEl65n!fXF]kel">
+                    <field name="user">Current user</field>
+                    <statement name="actions">
+                      <block type="stop_speaking" id="e5Tvbzhv8|GRywI]#Ufo">
+                        <next>
+                          <block type="attend_user" id="KaOwY(c.rp1jrnvK-!4X">
+                            <field name="user">nobody</field>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                    <next>
+                      <block type="onuserenter" id="}`wRroXsJ~uR[$:XSrRr">
+                        <statement name="actions">
+                          <block type="action_wait" id=".!D4yVl{s[R+{rl/ihVb">
+                            <field name="delay">2000</field>
+                            <next>
+                              <block type="attend_user" id="pzHh24=}OtKKglMF]#m#">
+                                <field name="user">that user</field>
+                                <next>
+                                  <block type="goto" id="=P|`]``N[^;s28Eh|zIB">
+                                    <field name="stateName">greeting</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="state" id=":pM_stC]RaNFLj]7I*px" x="131" y="39">
+    <field name="stateName">speakSwedish</field>
+    <statement name="actions">
+      <block type="action_voice" id="F:`$7QwOlJau.sG!o0oo">
+        <field name="voice">Elin-Neural (sv-SE) - Amazon Polly</field>
+        <next>
+          <block type="say_utterance" id="b=*21{.(jf`}^BCE0J?2">
+            <statement name="utterance">
+              <block type="utt_text" id="(389QoQTRdt#o,.07:^V">
+                <field name="text">Ja, jag talar svenska. Hur kan jag hjälpa dig?</field>
+              </block>
+            </statement>
+            <next>
+              <block type="listen" id="u}}@$dqy}Dms)8^Mj!7v"></block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="onreentry" id="uO23X`:pQ6?52YC[`tJi">
+        <statement name="actions">
+          <block type="listen" id="dtoio]bekHBX}0N!~OeT"></block>
+        </statement>
+        <next>
+          <block type="onresponse_intent" id=";7Oa~dX-L#t!D6-Hjp#8">
+            <value name="intent">
+              <block type="intent_variable" id="L!4:lDg^Z^:@T-iqp6Fh">
+                <field name="varname" id="Jj/s-9fm.H43$;=CU9?d" variabletype="IntentCandidate">needHelp</field>
+              </block>
+            </value>
+            <statement name="actions">
+              <block type="goto" id="d#R./YKLv-H2;W}$*WG(">
+                <field name="stateName">help</field>
+              </block>
+            </statement>
+            <next>
+              <block type="onresponse_nothing" id="erI!BN)|{KFHQ{#1pg]J">
+                <statement name="actions">
+                  <block type="reentry" id="dcs{ZOzheS/}eB{0Y?Hx"></block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="state" id="}%]]g_)UIEc=*#6N+!HR" x="527" y="34">
+    <field name="stateName">help</field>
+    <statement name="actions">
+      <block type="action_voice" id="z/kFj9SizgJ5XN#*e[HR">
+        <field name="voice">Elin-Neural (sv-SE) - Amazon Polly</field>
+        <next>
+          <block type="say_utterance" id="4(ePTXLGy4%zMHH:q/uP">
+            <statement name="utterance">
+              <block type="utt_text" id="CK~Oll=KO4j;.hDmo{6F">
+                <field name="text">Du kan ta Flybbussen till centrum.</field>
+                <next>
+                  <block type="utt_text" id="-|ky_K~,Cx%GuNUXD,Yp">
+                    <field name="text">Det kostar 119 kronor.</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="listen" id="DixQtd]*lLt4Jt***DV0"></block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="onreentry" id="rbLeb%anbVtq#RSc:pGT">
+        <statement name="actions">
+          <block type="listen" id="/pd]2K#[A,vKY,J)@yy,"></block>
+        </statement>
+        <next>
+          <block type="onresponse_intent" id="YWL#83nctH34`o*8f7t+">
+            <value name="intent">
+              <block type="intent_variable" id="EW@S%)pD^ayB]OrDy_Af">
+                <field name="varname" id="`f^$~Su~%9hPf{WPIcGk" variabletype="IntentCandidate">needTaxi</field>
+              </block>
+            </value>
+            <statement name="actions">
+              <block type="goto" id="5UCeU9WgYxSML,~2z5)Z">
+                <field name="stateName">taxi</field>
+              </block>
+            </statement>
+            <next>
+              <block type="onresponse_nothing" id="f!s$.;Xle@9*E^GBKA:{">
+                <statement name="actions">
+                  <block type="reentry" id="--)0F$f9eZ?.[wx)p8%g"></block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="state" id="K+pdUcmDG*LFq2{qPvFg" x="904" y="27">
+    <field name="stateName">taxi</field>
+    <statement name="actions">
+      <block type="action_voice" id="Ugn](;PtfVIIxW^GC`jK">
+        <field name="voice">Elin-Neural (sv-SE) - Amazon Polly</field>
+        <next>
+          <block type="say_utterance" id=");g,B4KT9u!b#cx7o.ge">
+            <statement name="utterance">
+              <block type="utt_text" id="=DW=mr.6,uzceHuWiX87">
+                <field name="text">Taxi kostar cirka 500 kronor.</field>
+                <next>
+                  <block type="utt_text" id="FebU=4L?RJ~eEG?A;N7$">
+                    <field name="text">Vänligen följ taxiskylten.</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="listen" id="*ong]Y0G{2}G13E]-F3]"></block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="onreentry" id="e1#DA`=9L+kIN}Pqro]f">
+        <statement name="actions">
+          <block type="listen" id=")_0,yn%))U+hSu{rBC!-"></block>
+        </statement>
+        <next>
+          <block type="onresponse_intent" id="Stxdm#,9eryY*(t:D|:$">
+            <value name="intent">
+              <block type="intent_variable" id="IF8nYCQAB;Ae=7o?7p5g">
+                <field name="varname" id="e4HaIEiBcrG7EIJ/^@M%" variabletype="IntentCandidate">thanks</field>
+              </block>
+            </value>
+            <statement name="actions">
+              <block type="goto" id="^2p}X]Ar/)`316dOAo4_">
+                <field name="stateName">end</field>
+              </block>
+            </statement>
+            <next>
+              <block type="onresponse_nothing" id="|3!Il2tq@JXT7gIY[olr">
+                <statement name="actions">
+                  <block type="reentry" id="_G9+NB]k)ao)ayqqE60j"></block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="state" id="a;hpz;pKMOqtBO401Jvv" x="1243" y="16">
+    <field name="stateName">end</field>
+    <statement name="actions">
+      <block type="action_voice" id="yxP)PB]WSH1ttHn4|D|h">
+        <field name="voice">Elin-Neural (sv-SE) - Amazon Polly</field>
+        <next>
+          <block type="say_utterance" id="R6I(BUMr[3Mq6|q?|(;-">
+            <statement name="utterance">
+              <block type="utt_text" id="~DzK#-`^MJL=HZd9Ye?*">
+                <field name="text">Varsågod, ha en trevlig resa!</field>
+              </block>
+            </statement>
+            <next>
+              <block type="action_gesture_param" id="L42pNZ5Dsp.riMQXL:WT">
+                <field name="gesture">BigSmile</field>
+                <value name="strength">
+                  <shadow type="text" id="DZC]UHxa@haQp`+9)Kfm">
+                    <field name="value">2.0</field>
+                  </shadow>
+                </value>
+                <value name="duration">
+                  <shadow type="text" id="+8gMR_FpIfq])@K{P-Hv">
+                    <field name="value">2.0</field>
+                  </shadow>
+                </value>
+                <next>
+                  <block type="stop_speaking" id="~ByLnh^1#7-EIs-++Z]@">
+                    <next>
+                      <block type="action_wait" id="7ST`G+{9%8?4zC2*,#aF">
+                        <field name="delay">2000</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+    <next>
+      <block type="onuserleave" id="t$V*5=?AJ-6+_EHQC]|I">
+        <field name="user">Current user</field>
+        <statement name="actions">
+          <block type="attend_user" id="pGw9gL8V~JWa!918P8Hm">
+            <field name="user">nobody</field>
+            <next>
+              <block type="terminate" id="{MuROc{O!AwF.Xw$Z?1g"></block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+  <block type="define_intent" id="WeZlMl1v4mV,14c;3J@k" x="145" y="455">
+    <field name="intent_name" id="Jj/s-9fm.H43$;=CU9?d" variabletype="IntentCandidate">needHelp</field>
+    <value name="intent">
+      <block type="intent_simple" id=":}@gt+4drt#XYPH?;q+p">
+        <statement name="exampleBlocks">
+          <block type="intent_example" id="[rE[/!.|BraRL)67LN_v">
+            <field name="text">Centrum?</field>
+            <next>
+              <block type="intent_example" id="UHtOxxo(5l?].tYEdhzu">
+                <field name="text">Jag vill åka till centrum.</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </value>
+  </block>
+  <block type="define_intent" id="2k@ERuX|67Uu)CFOZx,y" x="519" y="467">
+    <field name="intent_name" id="`f^$~Su~%9hPf{WPIcGk" variabletype="IntentCandidate">needTaxi</field>
+    <value name="intent">
+      <block type="intent_simple" id="@yZ)$P+].Xrb}F[$ngXY">
+        <statement name="exampleBlocks">
+          <block type="intent_example" id="nW=,cBv{B1[^vjz{eL?A">
+            <field name="text">Taxi?</field>
+            <next>
+              <block type="intent_example" id="5J,Y-!(=!arb+3LE+^WI">
+                <field name="text">Kan jag få en taxi?</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </value>
+  </block>
+  <block type="define_intent" id="*xOHf|}]-nKvt.xsXU}[" x="898" y="469">
+    <field name="intent_name" id="e4HaIEiBcrG7EIJ/^@M%" variabletype="IntentCandidate">thanks</field>
+    <value name="intent">
+      <block type="intent_simple" id="MGmOF1M1d.v.]%_V|^Ko">
+        <statement name="exampleBlocks">
+          <block type="intent_example" id="nO8c*5[|LM8Osz49RkUz">
+            <field name="text">Tack</field>
+            <next>
+              <block type="intent_example" id="Zywue:=~jph2M@aA5*9A">
+                <field name="text">Tackar</field>
+                <next>
+                  <block type="intent_example" id="1F,l69ZYe+ZB,T3pVoJB">
+                    <field name="text">Tack så mycket</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </value>
+  </block>
+  <block type="define_intent" id=")i3kI$83,g9[LcUvp}N7" x="-301" y="653">
+    <field name="intent_name" id="FL,}WJ]wgM|!c~+N{LDF" variabletype="IntentCandidate">swedish</field>
+    <value name="intent">
+      <block type="intent_simple" id="iyIJVS1;FYg,e+(97t:u">
+        <statement name="exampleBlocks">
+          <block type="intent_example" id="B{Pck{[^(e%:,^A:eSk[">
+            <field name="text">Swedish</field>
+            <next>
+              <block type="intent_example" id="do,iI7frV[UVwVH~lbJ:">
+                <field name="text">Hi, Swedish</field>
+                <next>
+                  <block type="intent_example" id="xa70()4@N!.E^[T697M-">
+                    <field name="text">Speak Swedish?</field>
+                    <next>
+                      <block type="intent_example" id="mgGis}`dc{o}SuU?`N|U">
+                        <field name="text">Hello, do you speak Swedish?</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </value>
+  </block>
+</xml>
