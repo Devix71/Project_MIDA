@@ -1,3 +1,5 @@
 best_object_detection_model.pth
 best_image_classification_model.pth
 .ipynb_checkpoints/Models-checkpoint.ipynb
+Images.7z
+data/Images.7z

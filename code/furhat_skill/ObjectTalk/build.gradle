@@ -1,0 +1,61 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.8.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.8
+
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://s3-eu-west-1.amazonaws.com/furhat-maven/releases"}
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+}
+
+dependencies {
+    implementation 'com.furhatrobotics.furhatos:furhat-commons:2.7.2'
+    implementation "org.zeromq:jeromq:0.5.2" // Dependency needed for ZMQ communication.
+    implementation 'com.google.code.gson:gson:2.8.8' // Gson for JSON parsing
+    implementation 'com.theokanning.openai-gpt3-java:service:0.12.0'
+    implementation("com.squareup.okhttp3:okhttp:4.9.0")
+    implementation 'org.json:json:20180130'
+
+}
+
+
+jar {
+    def lowerCasedName = baseName.toLowerCase()
+    def normalizedName = lowerCasedName.substring(0,1).toUpperCase() + lowerCasedName.substring(1)
+    manifest.attributes(
+            'Class-Path': configurations.runtimeClasspath.collect { it.getName() }.join(' '),
+            'Main-Class': "furhatos.app.${lowerCasedName}.${normalizedName}Skill"
+    )
+}
+
+
+
+//ShadowJar depends on jar being finished properly.
+shadowJar {
+    manifest {
+        exclude '**/Log4j2Plugins.dat'
+        exclude '**/node_modules'
+    }
+    from "skill.properties"
+    from "assets"
+    extension 'skill'
+}
