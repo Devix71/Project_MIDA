@@ -24,7 +24,7 @@ In order to properly use MIDA, its skill must be activated from the `code\furhat
 
 An important mention is that depending on what operating system you are using, you should edit either `vision_server.bash` or `vision_server.bat`. Namely they must contain a path to the **Miniconda bin directory**, the path to the **furhat_skill** folder, your **environment name** for activation and the path to the **objserv.py** file, which can be found at `code\furhat_skill\object-detection-server\objserv.py`.
 
-Using the Furhat skill requires the Furhat sdk, from which the skill ca be easilly loaded into.
+Using the Furhat skill requires the Furhat sdk, from which the skill ca be easilly loaded into. A valid openAI API key will also be needed to run it. The key must be used within the `code\furhat_skill\ObjectTalk\src\main\kotlin\furhatos\app\objectidentifier\flow\general.kt` file.
 
 ## Project Structure
 Within the `code/` folder, the project's files can be found. Most notably they are organized as such
