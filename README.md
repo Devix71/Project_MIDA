@@ -36,7 +36,7 @@ A `furhat_skill` folder which contains the files needed to load the skill and to
 Within the `ObjectTalk` folder, the most notable files are the `gradlew` file which is used to build the skill and the `code\furhat_skill\ObjectTalk\src\main\kotlin\furhatos\app\objectidentifier\flow\general.kt` file which contains the skill's logic.
 
 
-Within the `data/` folder, the dataset used in fine-tuning the models is located, the `Labelling` folder containing a `.csv` file containing the annotated data for the images, while the `Images` folder contains the corresponding images as the name would suggest in a 7zip archive for space saving reasons.
+Within the `data/` folder, the dataset used in fine-tuning the models is located, the `Labelling` folder containing a `.csv` file containing the annotated data for the images, while the `Images` folder contains the corresponding images as the name would suggest. Due to Github's size constraints, the files can be downloaded only from here, where they are archived as Images.7z `https://mega.nz/folder/VLpyVIAY#6oNp6DmolOUSsscpkUJVnA` .
 
 
 The `notes/` folder contains the project diary, with what each of the team members has done for this project and the initial project description and proposal.
